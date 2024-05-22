@@ -1,0 +1,140 @@
+### SYSTEM
+SPACECRAFT_BOX:
+  nametag: my-spacecraft                           # str
+  platform_mass: 111.5                            # float, (kg)
+  drag_coefficient: 2.2                           # float, (-)
+  reflectivity_coefficient:                         # float, (-)  TBD
+  max_angular_acceleration: 0.4                   # float, (deg/s²), 0.006981317007977318 rad/s²
+  max_angular_velocity: 2                         # float, (deg/s), 0.03490658503988659 rad/s
+  length_x: 0.8                                   # float, (m)
+  length_y: 0.5                                   # float, (m)
+  length_z: 0.5                                   #  float, (m)
+
+SPACECRAFT_SPHERE:
+  nametag: my-spacecraft-sphere                    # str
+  platform_mass: 111.5                            # float, (kg)
+  drag_coefficient: 2.2                           # float, (-)
+  reflectivity_coefficient: 1                        # float, (-)  TBD
+  cross_section: 0.5                              # float, (m²)
+
+BATTERY:
+  nametag: my-battery      # str
+  depth_of_discharge: 0.3          # float,(0<x<1)
+  nominal_capacity: 560            # float,(W)
+  minimum_charge_for_firing: 0.99  # float,(0<x<1)
+  initial_charge: 1              # float,(0<x<1)
+
+SOLAR_ARRAY:
+  nametag: my-solar-array                   # str
+  kind: DEPLOYABLE_FIXED                 # str, (values: BODY, DEPLOYABLE_FIXED, DEPLOYABLE_ROTATING, NONE)
+  initialisation_kind: MAXIMUM_POWER         # str, (values: MAXIMUM_POWER, SURFACE, SURFACE_AND_POWER)
+  efficiency: 0.293                                  # float, (0<x<1)
+  normal_in_satellite_frame: [ 0, 0, -1 ]  # list[float, float, float], 3-elements unit vector
+  maximum_power: 300                                 # float, (W)
+  surface:                                           # float, (m²).
+  axis_in_satellite_frame:               # Iterable[float], 3-elements unit vector
+  satellite_faces:                                   # Iterable[str], (values: PLUS_X, MINUS_X, PLUS_Y, MINUS_Y, PLUS_Z, MINUS_Z)
+
+THRUSTER_ELECTRICAL:
+  nametag: my-thruster           # str
+  impulse: 1                   # float, (Ns)  computed by FDS
+  maximum_thrust_duration: 1200            # float, (s)
+  propellant_mass: 4                   # float, (kg)
+  thrust: 0.014                        # float, (N)  To be updated at mission time
+  axis_in_satellite_frame: [ -1, 0, 0 ]  # list[float, float, float], 3-elements unit vector
+  isp: 950                             # float, (s) To be updated at mission time
+  wet_mass: 11                       # float, (kg)
+  warm_up_duration: 240                # float, (s)
+  power: 300                           # float, (W)
+  stand_by_power: 2.2                  # float, (W)
+  warm_up_power: 103.2                    # float, (W)
+
+### CONTEXT
+PROPAGATION_CONTEXT:
+  nametag: my-propagation-context
+  integrator_min_step: 0.01                     # float, (s)
+  integrator_max_step: 100                      # float, (s)
+  integrator_kind: DORMAND_PRINCE_54         # str, (values: 'DORMAND_PRINCE_853', 'DORMAND_PRINCE_54', 'ADAMS_MOULTON', 'RUNGE_KUTTA')
+  model_perturbations: [ EARTH_POTENTIAL, DRAG, THIRD_BODY, SRP ]  # Iterable[str], Perturbations included in the model (values: EARTH_POTENTIAL, SRP, THIRD_BODY, DRAG, CONSTANT_THRUST, IMPULSIVE_THRUST)
+  model_solar_flux: 150                         # float, Solar flux (SFU).
+  model_earth_potential_deg: 10                  # int, Earth potential degree (-)
+  model_earth_potential_ord: 10                  # int, Earth potential order (-)
+  model_atmosphere_kind: HARRIS_PRIESTER        # str, (values: 'HARRIS_PRIESTER', 'NRL_MSISE00')
+
+### MISSION
+MANEUVER_STRATEGY:
+  nametag: sma_change                   # str
+  thrust_arcs_position: "ASCENDING_AND_DESCENDING_NODES"               # str, (values: ASCENDING_AND_DESCENDING_NODES, ASCENDING_NODE, CUSTOM, DESCENDING_NODE, APOGEE_AND_PERIGEE, APOGEE, PERIGEE, ASCENDING_AND_DESCENDING_ANTINODES, ASCENDING_ANTINODE, DESCENDING_ANTINODE, MEAN_LONGITUDE)
+  thrust_arcs_number: "ONE"                  # str, (values: ONE or TWO)
+  thrust_arc_initialisation_kind: "DUTY_CYCLE"              # str, (values: DUTY_CYCLE, THRUST_DURATION)
+  number_of_thrust_orbits: 1            # int
+  number_of_rest_orbits: 2             # int
+  number_of_shift_orbits: 1             # int
+  orbital_duty_cycle: 0.2               # float, (0<x<1)
+  thrust_arc_duration: 1200             # float, (s)
+  stop_thrust_at_eclipse: False         # bool
+
+#MANEUVER_STRATEGY:
+#  nametag: inc_change                   # str
+#  thrust_arcs_position:  "DESCENDING_NODE"               # str, (values: ASCENDING_AND_DESCENDING_NODES, ASCENDING_NODE, CUSTOM, DESCENDING_NODE, APOGEE_AND_PERIGEE, APOGEE, PERIGEE, ASCENDING_AND_DESCENDING_ANTINODES, ASCENDING_ANTINODE, DESCENDING_ANTINODE, MEAN_LONGITUDE)
+#  thrust_arcs_number: "ONE"                  # str, (values: ONE or TWO)
+#  thrust_arc_definition:  "DUTY_CYCLE"              # str, (values: DUTY_CYCLE, THRUST_DURATION)
+#  number_of_thrust_orbits:  1            # int
+#  number_of_rest_orbits:   0             # int
+#  number_of_shift_orbits:  0             # int
+#  orbital_duty_cycle: 0.2               # float, (0<x<1)
+#  thrust_arc_duration: 1200             # float, (s)
+#  stop_thrust_at_eclipse: False         # bool
+
+ORBIT_DETERMINATION_CONFIG:
+  nametag: my-orbit-determination-config
+  tuning_alpha: 0.5  # float
+  tuning_beta: 2  # float
+  tuning_kappa: -2  # float
+  outliers_manager_scale: 10  # float
+  outliers_manager_warmup: 0  # float, (s)
+  noise_provider_kind: "BASIC"  # str, (values: 'BASIC', 'SNC', 'DMC', 'EDB_CD')
+
+TELEMETRY_GPS_NMEA:
+  nametag: my-telemetry-gps-nmea
+  standard_deviation_latitude: 0.01  # float
+  standard_deviation_longitude: 0.01  # float
+  standard_deviation_ground_speed: 1 # float
+  standard_deviation_altitude: 100  # float
+
+TELEMETRY_GPS_NMEA_RAW:
+  nametag: my-telemetry-gps-nmea-raw
+  standard_deviation_latitude: 0.01  # float
+  standard_deviation_longitude: 0.01  # float
+  standard_deviation_ground_speed: 1 # float
+  standard_deviation_altitude: 100  # float
+
+TELEMETRY_GPS_PV:
+  nametag: my-telemetry-gps-pv
+  standard_deviation_position: 100 # float
+  standard_deviation_velocity: 1 # float
+
+TELEMETRY_RADAR:
+  nametag: my-telemetry-radar
+  two_way_measurement: True # bool
+  standard_deviation_azimuth: 0.01 # float
+  standard_deviation_elevation: 0.01 # float
+  standard_deviation_range: 10 # float
+  standard_deviation_range_rate: 1 # float
+
+TELEMETRY_OPTICAL:
+  nametag: my-telemetry-optical
+  standard_deviation_azimuth: 0.01 # float
+  standard_deviation_elevation: 0.01 # float
+
+OEM_REQUEST:
+  nametag: my-oem-request  # str
+  creator: EXOTRAIL  # str
+  ephemerides_step: 60  # float
+  frame: EME2000  # str
+  object_id: "00000"  # str
+  object_name: Test-Spacecraft  # str
+  write_acceleration: False  # bool
+  write_covariance: False  # bool
+
+version: 1.3
