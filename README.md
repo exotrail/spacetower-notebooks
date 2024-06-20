@@ -1,4 +1,4 @@
-#  Presentation Notebooks for space**tower**™ Software Development Kit
+# Presentation Notebooks for space**tower**™ Software Development Kit
 
 This package contains Jupyter notebooks demonstrating the features of the Software Development Kit (SDK) of space**tower**™ in Python. 
 
@@ -29,16 +29,19 @@ These notebooks aim at being resources for new users to understand how the SDK i
 
 ### Request an API key
 
-To use the space**tower**™ SDK, you need to request an API key from Exotrail. This key will allow you to access the space**tower**™ API and use the SDK. To do so, please send a mail to the Flight Dynamics Support service at fds-support@exotrailspace.onmicrosoft.com.
+To use the space**tower**™ SDK, you need to request an API key from Exotrail. This key will allow you to access the space**tower**™ API and use the SDK.
 
-Once you have received your API key, you can start using the SDK.
+To do so, please register on [Exotrail's customer portal](https://portal.exotrail.space) and request access to the space**tower**™ API.
 
-The method `set_api_key` of the `fds` module allows you to set your API key. You can then use the SDK as you wish.
+Once you have received your credentials, you can start using the SDK.
+
+The methods `set_client_id` and `set_client_secret` of the `fds` module allows you to set your credentials.
+You can then use the SDK as you wish.
 
 ```python
-from fds.config import set_api_key
-
-set_api_key('your_api_key')
+from fds.config import set_client_id, set_client_secret
+set_client_id('your_client_id')
+set_client_secret('your_client_secret')
 ```
 
 
@@ -46,32 +49,61 @@ set_api_key('your_api_key')
 
 If you want to run these notebooks on your local device, you need to have Python 3.11 or higher installed, with a package manager like pip. The procedure described hereafter also requires the use of a Command Line Interface (CLI) and the version control system Git.
 
-Commands to run in the CLI will be written using `this` style.
+Commands to run in the CLI will be written using the following  style.
+```bash
+myCommand
+```
 
 Start by opening a CLI in you working folder, and clone the presentation notebooks repository : 
-`git clone https://github.com/exotrail/spacetower-notebooks`
+```bash
+git clone https://github.com/exotrail/spacetower-notebooks
+```
 
-Then, create a virtual environment where we will install and confine all the required dependencies : `python -m venv .venv` (you might change the name of your virtual environment if you wish to).
-
-Based on your operating system, you will have to activate the virtual environment differently. For Windows, you can use the following command : `.\.venv\Scripts\Activate.ps1`. For Unix-based systems, you can use `source .venv/bin/activate`.
+Then, create a virtual environment where we will install and confine all the required dependencies (you might change the name of your virtual environment if you wish to): 
+```bash 
+python -m venv .venv 
+```
+Based on your operating system, you will have to activate the virtual environment differently. For Windows, you can use the following command :
+```bash 
+.\.venv\Scripts\activate`
+``` 
+or if you want to use the Powershell script:
+```bash 
+.\.venv\Scripts\Activate.ps1`
+``` 
+For Unix-based systems, you can use : 
+```bash 
+source .venv/bin/activate
+```
 
 For more details, please refer to the official Python documentation : https://docs.python.org/3/library/venv.html
 
-Finally, install the space**tower**™ SDK and other dependencies with `pip install .` .
+Finally, install the space**tower**™ SDK and other dependencies with :
+```bash 
+pip install .
+``` 
 
-Once you have successfully installed this demonstration package with its dependencies, you can just run `jupyter notebook` and the JupyterLab interface will run on your favorite browser.
+Once you have successfully installed this demonstration package with its dependencies, you can just run :
+```bash
+jupyter notebook
+``` 
+and the *JupyterLab* interface will run on your favorite browser.
 
 ### Getting started online
 
-You can also access space**tower**™'s demonstration notebooks online, through a dedicated JupyterLab environment. To do so, browse to https://api.spacetower.exotrail.space/notebooks.
+You can also access space**tower**™'s demonstration notebooks online, through a dedicated JupyterLab environment.
 
-You should land on an authentification page. If you don't already have an account, click on sign up and fill the form. You will receive a confirmation mail on the mailbox you registered shortly after, click on the confirmation link inside it. You can then sign in.
+To do so, register on the [Exotrail's customer portal](https://portal.exotrail.space) and request access to the space**tower**™ Jupyter notebooks.
 
 This should take you to the JupyterLab online environment where you can see and use the presentation notebooks.
 
 ## Usage
 
-The JupyterLab interface presents you a file explorer view of this space**tower**™'s demonstration package. Double-click on one of the .ipynb notebook to open it. You will then be able to execute the Python code inside it cell by cell. We advise you to run them in the order in which they were written first. You can also edit these section to try out your ideas. For a more extensive documentation on how to use Jupyter, please refer to https://jupyter.org/ .
+The JupyterLab interface presents you a file explorer view of this space**tower**™'s demonstration package.
+
+Double-click on one of the .ipynb notebook to open it. You will then be able to execute the Python code inside it cell by cell.
+
+We advise you to run them in the order in which they were written first. You can also edit these section to try out your ideas. For a more extensive documentation on how to use Jupyter, please refer to https://jupyter.org/ .
 
 ## Dependencies
 
@@ -81,7 +113,11 @@ Please refer to the README.md file of the space**tower**™ SDK project for a li
 
 ## License
 
-This package is distributed under the MIT License. You are free to use, modify, and distribute the software as you see fit, provided that the original copyright notice and this permission notice are included in all copies or substantial portions of the software. The software is provided "as is," without warranty of any kind, express or implied. For more details, please refer to the LICENSE file included in this repository.
+This package is distributed under the MIT License. You are free to use, modify, and distribute the software as you see fit, provided that the original copyright notice and this permission notice are included in all copies or substantial portions of the software.
+
+The software is provided "as is," without warranty of any kind, express or implied.
+
+For more details, please refer to the LICENSE file included in this repository.
 
 ## Contact
 

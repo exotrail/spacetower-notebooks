@@ -2,12 +2,12 @@ from setuptools import setup, find_packages
 
 setup(
     name="spacetower-notebooks",
-    version="1.0.0",
+    version="1.1.0",
     description="Python Notebooks for FDS workflows",
     author="Exotrail",
     author_email="",
     url="https://github.com/exotrail/spacetower-notebooks",
-    license="Proprietary",
+    license="MIT",
     keywords=["FDS", "API", "Exotrail"],
     packages=find_packages(),
     install_requires=[
@@ -16,7 +16,7 @@ setup(
         "plotly>=5.22.0",
         "spacetrack>=1.3.0",
         "notebook>=7.2.0",
-        "spacetower-fds-sdk>=1.0.5"
+        "spacetower-fds-sdk>=1.0.0"
     ],
     extras_require={
         "dev": [
