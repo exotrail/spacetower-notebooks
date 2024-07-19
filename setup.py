@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="spacetower-notebooks",
-    version="1.1.0",
+    version="1.1.3",
     description="Python Notebooks for FDS workflows",
     author="Exotrail",
     author_email="",

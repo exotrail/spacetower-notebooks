@@ -19,6 +19,7 @@ These notebooks aim at being resources for new users to understand how the SDK i
     - Getting started on your local device
     - Getting started online
 - Usage
+- Documentation
 - Dependencies
 - License
 - Contact
@@ -104,6 +105,10 @@ The JupyterLab interface presents you a file explorer view of this space**tower*
 Double-click on one of the .ipynb notebook to open it. You will then be able to execute the Python code inside it cell by cell.
 
 We advise you to run them in the order in which they were written first. You can also edit these section to try out your ideas. For a more extensive documentation on how to use Jupyter, please refer to https://jupyter.org/ .
+
+## Documentation
+
+The reference documentation of space**tower**™'s Python SDK(Software Development Kit) used to write these notebooks can be found [here](https://docs.spacetower.exotrail.space/python-sdk/).
 
 ## Dependencies
 
