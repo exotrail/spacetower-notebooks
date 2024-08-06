@@ -16,7 +16,7 @@ setup(
         "plotly>=5.22.0",
         "spacetrack>=1.3.0",
         "notebook>=7.2.0",
-        "spacetower-fds-sdk>=1.0.0"
+        "spacetower-fds-sdk>=1.2.0"
     ],
     extras_require={
         "dev": [
